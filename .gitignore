@@ -1,0 +1,40 @@
+#############################
+# Ignore OS generated files #
+#############################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+*[Tt]humbs.db
+*.Trashes
+
+#############################
+# Ignore SASS cache #
+#############################
+*.sass-cache
+
+#############################
+# Ignore everything in the root except the "wp-content" directory.
+#############################
+/*
+!.gitignore
+!wp-content/
+!html/
+!markup/
+
+#############################
+# Ignore everything in the "wp-content" directory, except the "themes" directory.
+#############################
+wp-content/*
+!wp-content/themes/
+wp-content/themes/masjid/node_modules/*
+wp-content/themes/masjid/_/bower/*
+
+#############################
+# Ignore everything in the "themes" directory, except the themes you
+# specify (see the commented-out example for a hint on how to do this.)
+#############################
+wp-content/themes/*
+!wp-content/themes/masjid/

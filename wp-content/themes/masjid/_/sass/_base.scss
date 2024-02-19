@@ -1,0 +1,425 @@
+/* ------------------------------------------- */
+/* -- Placeholders */
+/* ------------------------------------------- */
+
+%wrapper {
+  max-width: $site-width;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+%holder {
+  max-width: $site-width + px;
+  margin: 0 auto;
+  position: relative;
+
+  @include breakpoint(1300px) {
+    max-width: $site-width + px;
+  }
+}
+
+%naked-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+%visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+%small-label {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+}
+
+%button {
+  background-color: $color--1;
+  color: $color--white;
+  cursor: pointer;
+  font-family: $font--main;
+  font-size: rem(13);
+  font-weight: 600;
+  line-height: rem(11);
+  letter-spacing: normal;
+  overflow: visible;
+  // min-width: 125px;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  text-transform: uppercase;
+  border: 0.0625rem solid $color--1;
+  padding: 0.93rem 2.3rem;
+  border-radius: 2rem;
+
+  &:hover {
+    background-color: transparent;
+    color: $color--1;
+  }
+}
+
+.btn {
+  @extend %button;
+}
+
+.btn--block {
+  margin: rem(15) 0 0;
+  @include breakpoint($breakpoint--main + 0px) {
+    margin: rem(20) 0 0;
+  }
+
+  .btn {
+    + .btn {
+      @include breakpoint($breakpoint--main + 0px) {
+        margin-left: rem(30);
+      }
+
+      @include breakpoint(max-width $breakpoint--main - 1px) {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+//----------------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+.chromeframe {
+  position: absolute;
+  top: 0;
+  padding: 20px;
+  background: #fff;
+  color: #666;
+}
+
+@-webkit-viewport {
+  width: device-width;
+}
+@-moz-viewport {
+  width: device-width;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@-o-viewport {
+  width: device-width;
+}
+@viewport {
+  width: device-width;
+}
+
+/* Basics + Fonts
+---------------------------------- */
+html {
+  overflow: unset !important;
+}
+
+body {
+  background-color: #fafafa;
+  color: $color--body-copy;
+  display: flex;
+  font-family: $font--main;
+  font-weight: 300;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  position: relative;
+  @include breakpoint(max-width $breakpoint--main - 1px) {
+    -webkit-overflow-scrolling: none;
+  }
+
+  &.menu-extended {
+    @include breakpoint(max-width 1080px) {
+      overflow: hidden;
+    }
+  }
+}
+
+img {
+  backface-visibility: hidden;
+  height: auto;
+  max-width: 100%;
+}
+
+p,
+ul,
+ol {
+  color: $color--body-copy;
+  font-family: $font--main;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 155.5%; /* 26.775px */
+  margin: 0;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    font-size: 1rem;
+  }
+
+  + p,
+  + ul,
+  + ol {
+    margin-top: 1.25rem;
+
+    @include breakpoint($breakpoint--main + 0px) {
+      margin-top: 1.5625rem;
+    }
+  }
+}
+
+.holder {
+  @extend %holder;
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Headers / Titles
+================================= */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 120%;
+}
+
+h1,
+h3 {
+  font-weight: 400;
+}
+
+h2,
+h4 {
+  font-weight: 300;
+}
+h1 {
+  font-size: 2.25rem;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    font-size: 3.75rem;
+  }
+}
+h2 {
+  @include breakpoint($breakpoint--main + 0px) {
+    font-size: rem(50);
+  }
+}
+
+h3 {
+  font-size: 1rem;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    font-size: rem(30);
+  }
+}
+h4 {
+  font-size: 1.25rem;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    font-size: 1.5rem;
+  }
+}
+
+input,
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+/* Links
+================================= */
+
+a {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+a:focus {
+  outline: none;
+}
+
+/* ---------- */
+
+address {
+  font-style: normal;
+}
+
+// ---- WP posts
+.wp-caption {
+  margin-top: 20 * 2;
+  margin-bottom: 20 * 2;
+  width: auto !important;
+  img {
+    display: block;
+  }
+}
+
+.image-caption {
+  padding: 10px 0;
+  font-size: 0.875rem;
+}
+
+article.post p.wp-caption-text,
+.wp-caption-text {
+  padding: 10px 0;
+  text-align: center;
+  margin-bottom: 20;
+  font-size: 0.875rem;
+}
+.alignright {
+  display: block;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    display: inline-block;
+    float: right;
+    margin: 0 0 20px 30px;
+  }
+}
+
+.aligncenter {
+  display: block;
+  margin: 20px auto;
+  clear: both;
+
+  .wp-block-embed__wrapper {
+    text-align: center;
+  }
+}
+
+article a[href$=".jpg"],
+article a[href$=".png"],
+article a[href$=".gif"] {
+  cursor: zoom-in;
+}
+
+img.size-large {
+  display: block;
+  margin: 20 * 2 0 20 * 3 0;
+}
+
+.wp-caption.aligncenter {
+  text-align: center;
+  > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.text-center {
+  text-align: start;
+  @include breakpoint(767px) {
+    text-align: center;
+  }
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  appearance: none;
+}
+
+// main wrapper
+.main--wrapper {
+  flex: 1 0 auto;
+}
+
+.bg-white {
+  background-color: $color--white;
+}
+
+.visible--mobile {
+  display: block;
+
+  @include breakpoint($breakpoint--main + 0px) {
+    display: none;
+  }
+}
+
+.visible--desktop {
+  display: block;
+
+  @include breakpoint(max-width $breakpoint--main - 1px) {
+    display: none;
+  }
+}
+
+.jarallax {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.wp-block-button {
+  .wp-block-button__link,
+  .wp-element-button {
+    @extend %button;
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-start {
+  text-align: start;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -10px;
+  margin-left: -10px;
+
+  > * {
+    padding-left: rem(10);
+    padding-right: rem(10);
+  }
+}
+
+.col-lg-6 {
+  @include breakpoint($breakpoint--main - 0px) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+.col-lg-3 {
+  @include breakpoint($breakpoint--main - 0px) {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+}

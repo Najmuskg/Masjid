@@ -1,0 +1,78 @@
+h3 {
+  font-weight: 700;
+  margin-bottom: 0.9375rem;
+  font-size: rem(24);
+  color: $color--2;
+  @include breakpoint($breakpoint--main + 0px) {
+    font-size: 1.875rem;
+  }
+}
+
+.holder.container {
+  @include breakpoint($breakpoint--main + 312px) {
+    display: flex;
+  }
+  article {
+    margin-bottom: rem(30);
+    padding: rem(30) 0;
+    @include breakpoint($breakpoint--main + 312px) {
+      flex: 1;
+      margin-right: 20px;
+      margin-bottom: rem(0);
+    }
+    .announcements--wrapper {
+      h2 {
+        color: $color--2;
+        font-size: 2.125rem;
+        font-weight: 700;
+        margin-bottom: 0.625rem;
+        @include breakpoint($breakpoint--main + 0px) {
+          font-size: 3.125rem;
+        }
+      }
+      p {
+        font-weight: 400;
+        font-size: 0.9375rem;
+      }
+      .card {
+        margin-top: 2.5rem;
+        padding: 1.875rem 1.5625rem;
+        border: 0.0625rem solid $color--5;
+        border-radius: 3.75rem;
+        @include breakpoint($breakpoint--main - 0px) {
+          display: flex;
+          gap: 2.5rem;
+        }
+        img {
+          border-radius: 30px;
+          width: 320px;
+          object-fit: cover;
+        }
+        &-info {
+          margin-top: rem(20);
+          @include breakpoint($breakpoint--main - 0px) {
+            margin-top: 0;
+          }
+          .date {
+            font-size: 1.25rem;
+            font-weight: 500;
+          }
+          p {
+            + p {
+              margin-top: 0.625rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  aside {
+    flex-basis: 30%;
+    margin-bottom: rem(30);
+    @include breakpoint($breakpoint--main + 312px) {
+      top: -61px;
+      position: relative;
+      margin-bottom: rem(0);
+    }
+  }
+}

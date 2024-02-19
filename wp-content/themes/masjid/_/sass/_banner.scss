@@ -1,0 +1,13 @@
+.banner--wrapper {
+  @extend %bg-cover;
+  min-height: 50vh;
+  position: relative;
+
+  @include breakpoint(max-width 767px) {
+    min-height: 55vh;
+  }
+
+  @include breakpoint(810px 1024px) {
+    min-height: 60vh;
+  }
+}
