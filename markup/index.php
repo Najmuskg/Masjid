@@ -119,7 +119,9 @@
                         </div>
                     </div><!-- card -->
 
-                    <!-- ==================== End announcements--wrapper ==================== -->
+                </section>
+
+                <!-- ==================== End announcements--wrapper ==================== -->
 
             </article>
 
