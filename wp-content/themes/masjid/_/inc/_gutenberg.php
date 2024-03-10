@@ -100,7 +100,7 @@ function underpants_allowed_block_types_all($allowed_blocks, $post)
         // --- Custom/ACF
         'acf/announcements-block',  
         'acf/footer-contact',  
-        'acf/prayers-time-sheet',  
+        'acf/prayers-sheets-block',  
        
          
     );
@@ -121,6 +121,23 @@ function blocks_acf_init()
             'name' => 'announcements-block',
             'title' => __('Announcements Block'),
             'description' => __('Announcements Block'),
+            'render_callback' => 'my_acf_block_render_callback',
+            'category' => 'layout',
+            'icon' => 'chart-area',
+            'mode' => 'edit',
+            'supports' => array('align' => false),
+            'anchor' => true,
+            'example' => array(
+                'attributes' => array(
+                    'mode' => 'preview',
+                    'is_preview' => true,
+                ),
+            ),
+        ));    
+        acf_register_block(array(
+            'name' => 'prayers-sheets-block',
+            'title' => __('Prayer Sheets Block'),
+            'description' => __('Prayer Sheets Block'),
             'render_callback' => 'my_acf_block_render_callback',
             'category' => 'layout',
             'icon' => 'chart-area',
