@@ -133,43 +133,7 @@ function blocks_acf_init()
                     'is_preview' => true,
                 ),
             ),
-        ));
-        acf_register_block(array(
-            'name' => 'footer-contact',
-            'title' => __('Footer Contact'),
-            'description' => __('Footer Contact'),
-            'render_callback' => 'my_acf_block_render_callback',
-            'category' => 'layout',
-            'icon' => 'chart-area',
-            'mode' => 'edit',
-            'supports' => array('align' => false),
-            'anchor' => true,
-            'example' => array(
-                'attributes' => array(
-                    'mode' => 'preview',
-                    'is_preview' => true,
-                ),
-            ),
-        ));
-        acf_register_block(array(
-            'name' => 'prayers-time-sheet',
-            'title' => __('Prayers Time Sheet'),
-            'description' => __('Prayers Time Sheet'),
-            'render_callback' => 'my_acf_block_render_callback',
-            'category' => 'layout',
-            'icon' => 'chart-area',
-            'mode' => 'edit',
-            'supports' => array('align' => false),
-            'anchor' => true,
-            'example' => array(
-                'attributes' => array(
-                    'mode' => 'preview',
-                    'is_preview' => true,
-                ),
-            ),
-        ));
-      
-        
+        ));    
     }
 }
 

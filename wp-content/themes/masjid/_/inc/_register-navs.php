@@ -7,10 +7,7 @@
 	function wd_register_menus() {
 		register_nav_menus(
 			array(
-				'primary' => __( 'Primary Menu (Mobile)' ),
-				'mega_menu' => __( 'Mega Menu' ),
 				'footer_menu' => __( 'Footer Menu' ),
-				// etc.
 
 			)
 		);

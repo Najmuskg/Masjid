@@ -16,54 +16,73 @@
                             <?php
                             $footer_logo = get_field('footer_logo', 'options');
                             if ($footer_logo) : ?>
-                                <img src="<?php echo esc_url($footer_logo['url']); ?>" alt="<?php echo esc_attr($footer_logo['alt']); ?>" />
+                            <img src="<?php echo esc_url($footer_logo['url']); ?>"
+                                alt="<?php echo esc_attr($footer_logo['alt']); ?>" />
                             <?php endif; ?>
                         </a>
                         <div>
                             <h3>Misato <span>Masjid</span></h3>
-                            <p>341-0011, 1Chome-228-2 Uneme, Misato-shi,
-                                Saitama, Japan</p>
+
+                            <?php if ($adress = get_field('adress', 'options')) : ?>
+                            <?php echo $adress; ?>
+                            <?php endif; ?>
+
                             <div class="conatcts">
                                 <ul>
+
+                                    <?php if (have_rows('contact_box', 'options')) : ?>
+                                    <?php while (have_rows('contact_box', 'options')) :
+                                            the_row(); ?>
                                     <li>
-                                        <span>Mobile No 1</span>
-                                        90-7735-2450
+                                        <?php if ($phone = get_sub_field('phone', 'options')) : ?>
+                                        <span><?php echo esc_html($phone); ?></span>
+                                        <?php endif; ?>
+                                        <?php if ($number = get_sub_field('number', 'options')) : ?>
+                                        <?php echo $number; ?>
+                                        <?php endif; ?>
                                     </li>
-                                    <li>
-                                        <span>Mobile No 2</span>
-                                        90-7735-2450
-                                    </li>
-                                    <li>
-                                        <span>Mobile No 3</span>
-                                        90-7735-2450
-                                    </li>
-                                    <li>
-                                        <span>Mobile No 4</span>
-                                        90-7735-2450
-                                    </li>
+
+                                    <?php endwhile; ?>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
+
                         </div>
                     </div>
 
                 </div>
                 <div class="footer-widget col-lg-3">
-                    <h3>Navigations</h3>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Pray Times</a></li>
-                        <li><a href="">Donation</a></li>
-                        <li><a href="">Contact US</a></li>
-                        <li><a href="">About Us</a></li>
-                    </ul>
+
+                    <?php if ($nav_title = get_field('nav_title', 'options')) : ?>
+                    <h3><?php echo esc_html($nav_title); ?></h3>
+                    <?php endif; ?>
+
+                    <?php
+                    wp_nav_menu($args = array(
+                        'menu' => "footer_menu",
+                        'menu_class' => "footer--menu",
+                        'container' => "ul",
+                        'theme_location' => "footer_menu",
+                    ));
+                    ?>
                 </div>
                 <div class="footer-widget col-lg-3">
-                    <h3>Library</h3>
+
+                    <?php if ($library_title = get_field('library_title', 'options')) : ?>
+                    <h3><?php echo esc_html($library_title); ?></h3>
+                    <?php endif; ?>
+
                     <ul>
-                        <li><a href="">Study Room</a></li>
-                        <li><a href="">Videos</a></li>
-                        <li><a href="">Prayer Shedule</a></li>
-                        <li><a href="">Nikah</a></li>
+                        <?php if (have_rows('library_lists', 'options')) : ?>
+                        <?php while (have_rows('library_lists', 'options')) :
+                                the_row(); ?>
+                        <?php if ($item = get_sub_field('item', 'options')) : ?>
+                        <li><a href=""><?php echo esc_html($item); ?></a></li>
+                        <?php endif; ?>
+
+                        <?php endwhile; ?>
+                        <?php endif; ?>
+
                     </ul>
                 </div>
             </div>
@@ -73,7 +92,7 @@
     <div class="footer--bottom">
         <div class="holder">
             <ul class="footer--footnote">
-                <li><a href="#">© Misato Mashid 2022</a></li>
+                <li><a href="#">© Misato Mashid <?php echo date('Y'); ?></a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms & Conditions</a></li>
             </ul>
