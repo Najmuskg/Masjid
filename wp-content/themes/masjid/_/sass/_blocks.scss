@@ -15,6 +15,7 @@ h3 {
   article {
     margin-bottom: rem(30);
     padding: rem(30) 0;
+    max-width: 848px;
     @include breakpoint($breakpoint--main + 312px) {
       flex: 1;
       margin-right: 20px;
@@ -50,6 +51,7 @@ h3 {
         img {
           border-radius: 30px;
           width: 320px;
+          height: 270px;
           object-fit: cover;
         }
         &-info {

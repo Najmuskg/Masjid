@@ -26,98 +26,7 @@ $(function () {
     lastScrollTop = windowTop;
   });
 
-  /* Main Nav */
-  if ($(window).width() < 1080) {
-    $(".main--menu .menu-item-has-children span").on("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      $(this).toggleClass("menuOpen");
-      $(this).parent().siblings(".sub-menu").slideToggle("slow");
-    });
-  }
-
-  if ($(window).width() < 1080) {
-    $(".main--menu .menu-item-has-children").append("<span></span>");
-    $(".menu-item-has-children > span").on("click", function (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      $(this).parent(".menu-item-has-children").siblings().removeClass("open");
-      $(this).parent(".menu-item-has-children").toggleClass("open");
-    });
-  }
-
-  /* Sticky Menu */
-
-  $(".toggle-menu").on("click", function () {
-    $("body").toggleClass("menu-extended");
-    $("header").toggleClass("nav-open");
-    $(".main--menu").removeClass("sub-menu-open");
-    $(".menu-item-has-children").removeClass("open");
-  });
-
-  // End of Sticky Menu
-
-  /* Filter drop down */
-
-  $(".filter-title").click(function () {
-    $(this).data("clicked", true);
-    var $this = $(this);
-
-    $(".filter-title").not($this).next().removeClass("filter-active");
-    $(this).next().toggleClass("filter-active");
-  });
-
-  // End of Filter drop down
-
-  /* Footer Menu Slide Mobile */
-  if ($(window).width() < 768) {
-    $(".filters--title").on("click", function () {
-      $(this).toggleClass("filter-open");
-      $(this).siblings(".filters--list").slideToggle("slow");
-    });
-
-    $(".footer--title").on("click", function (e) {
-      e.preventDefault();
-      $(this).siblings(".footer--menu").slideToggle("slow");
-    });
-
-    $(".scroller__title").on("click", function () {
-      $(this).toggleClass("scroll-nav-open");
-      $(this).siblings(".scroller__nav").slideToggle();
-    });
-  }
-  // End of Footer Menu Slide Mobile
-
-  /* Footer Menu Slide Mobile */
-  $('.scroll--nav a[href^="#"]').on("click", function (event) {
-    var target = $(this.getAttribute("href"));
-    if (target.length) {
-      event.preventDefault();
-      $("html, body")
-        .stop()
-        .animate(
-          {
-            scrollTop: target.offset().top - 0,
-          },
-          1000
-        );
-    }
-  });
-  // End of Footer Menu Slide Mobile
-
-  /* Language Selector */
-  $(".nav-toggle").on("click", function () {
-    $(this).toggleClass("footer-menu-expand");
-    $(".footer--nav").slideToggle();
-  });
-  // End of Language Selector
-
-  /* Parallax Effect on scroll */
-  /* ------------------------------------------- */
   $(".jarallax").jarallax();
-
-  /* Custom Tabs */
-  /* ------------------------------------------- */
 
   $(".tabs li:first-child").addClass("active");
   $(".content-wrapper > div:first-child").addClass("active");
@@ -133,60 +42,21 @@ $(function () {
   });
   // End of Tabs
 
-  var inf_scrll = jQuery(".next");
-  //console.log(inf_scrll.length);
-  if (inf_scrll.length) {
-    var infScroll = new InfiniteScroll(".ctal-item--container", {
-      // the wrapper/container
-      path: ".next",
-      append: ".grid__items",
-      // append: ".news",
-      status: ".page-load-status",
-      hideNav: ".pagination",
-      // load pages on button click - switch scrollThreshold to FALSE
-      button: ".load-more",
-      scrollThreshold: false,
-      history: false,
-      // status: ".page-load-status",
-    });
+  new Swiper(".announcements--slider", {
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    effect: "slide",
+    pagination: {
+      el: ".announcements-progress",
+      type: "progressbar",
+    },
 
-    // Do stuff when new items arrive
-    var $container = jQuery(".ctal-item--container");
-    $container.on(
-      "append.infiniteScroll",
-      function (event, response, path, items) {
-        const scrollers = document.querySelectorAll("[data-scroll]");
-        const observer = new IntersectionObserver(check);
-        scrollers.forEach((scroller) => observer.observe(scroller));
-      }
-    );
-  }
-  // ENd of
-
-  // Map Toggle
-  $(".map-toggle").on("click", function () {
-    $(this).toggleClass("close");
-    $("#mapid").toggleClass("close");
+    navigation: {
+      nextEl: ".announcements-next",
+      prevEl: ".announcements-prev",
+    },
   });
 });
-
-/* window load class helper */
-/* ------------------------------------------- */
-/* manually doing in-view stuff */
-
-const scrollers = document.querySelectorAll("[data-scroll]");
-
-function check(entries) {
-  entries.map((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("in-view");
-      observer.unobserve(entry.target);
-    }
-  });
-}
-
-const observer = new IntersectionObserver(check);
-scrollers.forEach((scroller) => observer.observe(scroller));
 
 $(function () {
   "use strict";
@@ -239,68 +109,4 @@ $(function () {
     },
     "-=1.5"
   );
-});
-
-$(window).on("load", function () {
-  /* =============================================================================
-  ---------------------------------  Preloader  ----------------------------------
-  ============================================================================= */
-
-  var body = $("body");
-  body.addClass("loaded");
-  setTimeout(function () {
-    body.removeClass("loaded");
-  }, 1500);
-});
-
-/* =============================================================================
-  -----------------------------  Button scroll up   ------------------------------
-  ============================================================================= */
-
-$(document).ready(function () {
-  "use strict";
-
-  var progressPath = document.querySelector(".progress-wrap path");
-  var pathLength = progressPath.getTotalLength();
-  progressPath.style.transition = progressPath.style.WebkitTransition = "none";
-  progressPath.style.strokeDasharray = pathLength + " " + pathLength;
-  progressPath.style.strokeDashoffset = pathLength;
-  progressPath.getBoundingClientRect();
-  progressPath.style.transition = progressPath.style.WebkitTransition =
-    "stroke-dashoffset 10ms linear";
-  var updateProgress = function () {
-    var scroll = $(window).scrollTop();
-    var height = $(document).height() - $(window).height();
-    var progress = pathLength - (scroll * pathLength) / height;
-    progressPath.style.strokeDashoffset = progress;
-  };
-  updateProgress();
-  $(window).scroll(updateProgress);
-  var offset = 150;
-  var duration = 550;
-  jQuery(window).on("scroll", function () {
-    if (jQuery(this).scrollTop() > offset) {
-      jQuery(".progress-wrap").addClass("active-progress");
-    } else {
-      jQuery(".progress-wrap").removeClass("active-progress");
-    }
-  });
-  jQuery(".progress-wrap").on("click", function (event) {
-    event.preventDefault();
-    jQuery("html, body").animate({ scrollTop: 0 }, duration);
-    return false;
-  });
-});
-
-/* =============================================================================
-  -----------------------------  Progress   ------------------------------
-  ============================================================================= */
-
-$(document).scroll(function () {
-  var scrollTop = $(document).scrollTop();
-  var scrollHeight = $(document).height();
-  var windowHeight = $(window).height();
-  var scrollBottom = scrollHeight - windowHeight;
-  var scrollPercent = (scrollTop / scrollBottom) * 100 + "%";
-  $("#progress").css("--scroll", scrollPercent);
 });

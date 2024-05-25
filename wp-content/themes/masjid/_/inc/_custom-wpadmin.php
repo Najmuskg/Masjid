@@ -67,41 +67,41 @@ function change_post_object_label()
 add_action('init', 'change_post_object_label');
 
 // Function to register custom post type "Prayers Time"
-function register_prayers_time_post_type()
-{
-  $labels = array(
-    'name'               => 'Prayers Time',
-    'singular_name'      => 'Prayers Time',
-    'add_new'            => 'Add New Prayers Time',
-    'add_new_item'       => 'Add New Prayers Time',
-    'edit_item'          => 'Edit Prayers Time',
-    'new_item'           => 'New Prayers Time',
-    'view_item'          => 'View Prayers Time',
-    'search_items'       => 'Search Prayers Time',
-    'not_found'          => 'No Prayers Time found',
-    'not_found_in_trash' => 'No Prayers Time found in Trash',
-    'parent_item_colon'  => 'Parent Prayers Time:',
-    'menu_name'          => 'Prayers Time'
-  );
+// function register_prayers_time_post_type()
+// {
+//   $labels = array(
+//     'name'               => 'Prayers Time',
+//     'singular_name'      => 'Prayers Time',
+//     'add_new'            => 'Add New Prayers Time',
+//     'add_new_item'       => 'Add New Prayers Time',
+//     'edit_item'          => 'Edit Prayers Time',
+//     'new_item'           => 'New Prayers Time',
+//     'view_item'          => 'View Prayers Time',
+//     'search_items'       => 'Search Prayers Time',
+//     'not_found'          => 'No Prayers Time found',
+//     'not_found_in_trash' => 'No Prayers Time found in Trash',
+//     'parent_item_colon'  => 'Parent Prayers Time:',
+//     'menu_name'          => 'Prayers Time'
+//   );
 
-  $args = array(
-    'labels'              => $labels,
-    'public'              => true,
-    'has_archive'         => true,
-    'publicly_queryable'  => true,
-    'query_var'           => true,
-    'rewrite'             => true,
-    'capability_type'     => 'post',
-    'hierarchical'        => false,
-    'supports'            => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'),
-    'menu_position'       => 5,
-    'menu_icon'           => 'dashicons-clock', // You can change the icon
-    'show_in_rest'        => true
-  );
+//   $args = array(
+//     'labels'              => $labels,
+//     'public'              => true,
+//     'has_archive'         => true,
+//     'publicly_queryable'  => true,
+//     'query_var'           => true,
+//     'rewrite'             => true,
+//     'capability_type'     => 'post',
+//     'hierarchical'        => false,
+//     'supports'            => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'custom-fields'),
+//     'menu_position'       => 5,
+//     'menu_icon'           => 'dashicons-clock', // You can change the icon
+//     'show_in_rest'        => true
+//   );
 
-  register_post_type('prayers_time', $args);
-}
-add_action('init', 'register_prayers_time_post_type');
+//   register_post_type('prayers_time', $args);
+// }
+// add_action('init', 'register_prayers_time_post_type');
 
 
 

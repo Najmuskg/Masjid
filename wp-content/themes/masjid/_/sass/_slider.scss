@@ -1,0 +1,78 @@
+.swiper-controls {
+  display: flex;
+  // flex-wrap: wrap;
+  align-items: center;
+  margin: 1.25rem auto 0;
+
+  @media screen and (min-width: $breakpoint--main) {
+    margin: 2.5rem auto 0;
+  }
+
+  &__navigation {
+    align-items: center;
+    display: flex;
+
+    .swiper-button-next,
+    .swiper-button-previous {
+      cursor: pointer;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      width: 1.56138rem;
+      height: 0.62438rem;
+      margin: 0;
+      position: static;
+
+      &::after {
+        content: none;
+      }
+
+      svg {
+        width: 100%;
+        height: 12px;
+        @media screen and (min-width: $breakpoint--main) {
+          width: 14px;
+          height: 12px;
+        }
+
+        *{
+          fill: $color--1;
+        }
+      }
+
+      &.swiper-button-disabled {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+    }
+
+    .swiper-button-previous {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__progress {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    margin-left: 0.625rem;
+
+    .swiper-pagination-progressbar {
+      background: $color--1;
+      height: 1px;
+      position: relative;
+      width: 100%;
+
+      span {
+        background:$color--1;
+        height: 3px;
+        left: 0;
+        position: absolute;
+        top: -1px;
+        transform-origin: left top;
+        width: 100%;
+      }
+    }
+  }
+}
