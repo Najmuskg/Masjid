@@ -192,7 +192,7 @@ function display_custom_date()
 // write a cron to load salat time for saitama city from api and save to acf field
 function fetch_and_save_salat_times()
 {
-    $api_url = 'https://api.aladhan.com/v1/timingsByCity/07-01-2026?city=saitama&country=Japan&method=3';
+    $api_url = 'https://api.aladhan.com/v1/timingsByCity?city=saitama&country=Japan&method=3';
     $response = wp_remote_get($api_url);
     if (is_wp_error($response)) {
         return; // Exit if there's an error
@@ -200,6 +200,11 @@ function fetch_and_save_salat_times()
     $data = json_decode(wp_remote_retrieve_body($response), true);
     if (isset($data['data']['timings']['Maghrib'])) {
         $salat_times = $data['data']['timings']['Maghrib'];
+        // add 5 minutes to this salat time before saving
+        $time = DateTime::createFromFormat('H:i', $salat_times);
+        $time->modify('+5 minutes');
+        $salat_times = $time->format('H:i');
+
         // convert to 12 hour format
         $salat_times = date("g:i A", strtotime($salat_times));
 
