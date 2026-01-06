@@ -2,41 +2,58 @@
 
     <div class="timesCard">
 
-        <?php if ($title = get_field('title')) : ?>
-            <h4><?php echo esc_html($title); ?></h4>
+        <?php if ($pt_title = get_field('pt_title', 'options')) : ?>
+            <h4><?php echo esc_html($pt_title); ?></h4>
         <?php endif; ?>
 
         <div class="bg-white">
-            <div class="tab-wrapper">
 
-                <ul class="tabs">
-                    <li class="tab-link"><a href="#tab-1">Prayer Times</a> </li>
-                    <li class="tab-link"><a href="#tab-2">Jum'ah Prayer</a> </li>
-                </ul>
-
-            </div><!-- tab-wrapper -->
-
-            <?php if ($caption = get_field('caption')) : ?>
-                <?php echo $caption; ?>
+            <?php if ($pt_caption = get_field('pt_caption', 'options')) : ?>
+                <?php //echo esc_html($pt_caption); 
+                ?>
             <?php endif; ?>
+            <?php echo display_custom_date(); ?>
 
             <div class="content-wrapper">
                 <div id="tab-1" class="tab-content">
+                    <?php
+                    // Prayer Times Table 
+                    //$salat_times = get_field('salat_times', 'options');
+                    //$time_sheets = get_field('time_sheets', 'options');
+
+                    //print_r($salat_times);
+                    //print_r($time_sheets);
+                    ?>
                     <table class="rwd-table">
                         <tbody>
 
-                            <?php
-                            require(get_template_directory() . '/layout-modules/_list-prayers-items.php');
-                            ?>
+                            <?php if (have_rows('time_sheets', 'options')) : ?>
+                                <?php while (have_rows('time_sheets', 'options')) : the_row(); ?>
+                                    <tr>
+                                        <td>
+                                            <?php if ($prayer_name = get_sub_field('prayer_name')) : ?>
+                                                <?php echo esc_html($prayer_name); ?>
+                                            <?php endif; ?>
+                                        </td>
+
+                                        <td>
+                                            <img src="<?php bloginfo('template_url'); ?>/_/images/miner_green.png" alt="" />
+                                        </td>
+
+                                        <td>
+                                            <?php if ($prayer_time = get_sub_field('prayer_time')) : ?>
+                                                <?php echo esc_html($prayer_time); ?>
+                                            <?php endif; ?>
+                                        </td>
+
+                                    </tr>
+                                <?php endwhile; ?>
+                            <?php endif; ?>
 
                         </tbody>
 
                     </table><!-- rwd-table -->
 
-                </div><!-- tab-content -->
-
-                <div id="tab-2" class="tab-content">
-                    <h3>Sakib</h3>
                 </div><!-- tab-content -->
 
             </div>
